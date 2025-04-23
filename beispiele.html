@@ -131,37 +131,39 @@
         <textarea id="alert-html-output" class="form-control" rows="3" readonly></textarea>
       </div>
 
-
-  <hr class="my-5">
-    <!-- Drittes interaktives Beispiel -->
-<h3 class="mb-4">Drittes interaktives Beispiel:</h3>
-<p>Passe ein Bootstrap-Grid-System live an.</p>
-
-<div class="mb-4">
-  <h5>Vorschau:</h5>
-  <div id="preview-grid" class="row">
-    <div class="col-4 bg-primary text-white text-center p-2">Spalte 1</div>
-    <div class="col-4 bg-secondary text-white text-center p-2">Spalte 2</div>
-    <div class="col-4 bg-success text-white text-center p-2">Spalte 3</div>
-  </div>
-</div>
-
-<div class="mb-3">
-  <label for="grid-columns" class="form-label">Anzahl der Spalten:</label>
-  <input type="number" id="grid-columns" class="form-control" min="1" max="12" value="3">
-</div>
-
-<div class="mb-3">
-  <label for="grid-width" class="form-label">Breite jeder Spalte (Bootstrap-Klassen, z.B. "4"):</label>
-  <input type="number" id="grid-width" class="form-control" min="1" max="12" value="4">
-</div>
-
-<button id="update-grid-btn" class="btn btn-dark mb-3">Grid aktualisieren</button>
-
-<div>
-  <label for="grid-html-output" class="form-label">HTML-Code:</label>
-  <textarea id="grid-html-output" class="form-control" rows="5" readonly></textarea>
-</div>
+      <hr class="my-5">
+      <!-- Drittes interaktives Beispiel -->
+      <h3 class="mb-4">Drittes interaktives Beispiel:</h3>
+      <p>Passe ein Bootstrap-Grid-System live an:</p>
+      
+      <div class="mb-4">
+        <h5>Vorschau:</h5>
+        <div id="preview-grid" class="container">
+          <!-- Dynamisch generiertes Grid wird hier angezeigt -->
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <label for="grid-rows" class="form-label">Anzahl der Zeilen:</label>
+        <input type="number" id="grid-rows" class="form-control" min="1" max="10" value="1">
+      </div>
+      
+      <div class="mb-3">
+        <label for="grid-columns" class="form-label">Anzahl der Spalten pro Zeile:</label>
+        <input type="number" id="grid-columns" class="form-control" min="1" max="12" value="3">
+      </div>
+      
+      <div class="mb-3">
+        <label for="grid-width" class="form-label">Breite jeder Spalte (Bootstrap-Klassen, z.B. "4"):</label>
+        <input type="number" id="grid-width" class="form-control" min="1" max="12" value="4">
+      </div>
+      
+      <button id="update-grid-btn" class="btn btn-dark mb-3">Grid aktualisieren</button>
+      
+      <div>
+        <label for="grid-html-output" class="form-label">HTML-Code:</label>
+        <textarea id="grid-html-output" class="form-control" rows="5" readonly></textarea>
+      </div>
 </div>
 </div>
 </main>

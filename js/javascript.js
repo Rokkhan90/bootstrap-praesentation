@@ -88,38 +88,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const gridPreview = document.getElementById("preview-grid"); // Vorschau-Bereich für das Grid
+  const gridRowsInput = document.getElementById("grid-rows"); // Eingabefeld für die Anzahl der Zeilen
   const gridColumnsInput = document.getElementById("grid-columns"); // Eingabefeld für die Anzahl der Spalten
   const gridWidthInput = document.getElementById("grid-width"); // Eingabefeld für die Breite der Spalten
   const updateGridBtn = document.getElementById("update-grid-btn"); // Button zum Aktualisieren des Grids
   const gridHtmlOutput = document.getElementById("grid-html-output"); // Textarea zur Anzeige des generierten HTML-Codes
 
-  // Nur ausführen, wenn alle benötigten Elemente vorhanden sind
-  if (gridPreview && gridColumnsInput && gridWidthInput && updateGridBtn && gridHtmlOutput) {
-    // Diese Funktion aktualisiert das Grid und zeigt den HTML-Code dazu an
-    function updateGrid() {
-      const columns = parseInt(gridColumnsInput.value) || 1; // Anzahl der Spalten (Standard: 1)
-      const width = parseInt(gridWidthInput.value) || 12; // Breite der Spalten (Standard: 12)
+  // Funktion zum Generieren des Grids
+  function updateGrid() {
+    const rows = Math.min(Math.max(parseInt(gridRowsInput.value) || 1, 1), 10); // Anzahl der Zeilen (1–10)
+    const columns = Math.min(Math.max(parseInt(gridColumnsInput.value) || 1, 1), 12); // Anzahl der Spalten (1–12)
+    const width = Math.min(Math.max(parseInt(gridWidthInput.value) || 12, 1), 12); // Breite der Spalten (1–12)
 
-      // Begrenzung der Werte auf gültige Bootstrap-Werte
-      const validColumns = Math.min(Math.max(columns, 1), 12);
-      const validWidth = Math.min(Math.max(width, 1), 12);
+    // Vorschau und HTML-Code zurücksetzen
+    gridPreview.innerHTML = "";
+    let gridHtml = "";
 
-      // Grid-Inhalt generieren
-      gridPreview.innerHTML = ""; // Vorschau-Bereich leeren
-      let gridHtml = `<div class="row">\n`; // Start des HTML-Codes
+    // Grid generieren
+    for (let r = 1; r <= rows; r++) {
+      const rowHtml = document.createElement("div");
+      rowHtml.className = "row mb-3"; // Bootstrap-Klasse für Zeilen
+      gridHtml += `<div class="row">\n`;
 
-      for (let i = 1; i <= validColumns; i++) {
-        const colHtml = `<div class="col-${validWidth} bg-primary text-white text-center p-2">Spalte ${i}</div>`;
-        gridPreview.innerHTML += colHtml; // Spalte zur Vorschau hinzufügen
-        gridHtml += `  ${colHtml}\n`; // Spalte zum HTML-Code hinzufügen
+      for (let c = 1; c <= columns; c++) {
+        const colHtml = document.createElement("div");
+        colHtml.className = `col-${width} bg-primary text-white text-center p-2`;
+        colHtml.textContent = `Zeile ${r}, Spalte ${c}`;
+        rowHtml.appendChild(colHtml);
+
+        gridHtml += `  <div class="col-${width} bg-primary text-white text-center p-2">Zeile ${r}, Spalte ${c}</div>\n`;
       }
 
-      gridHtml += `</div>`; // Ende des HTML-Codes
-      gridHtmlOutput.value = gridHtml; // HTML-Code in die Textarea schreiben
+      gridPreview.appendChild(rowHtml);
+      gridHtml += `</div>\n`;
     }
 
-    updateGridBtn.addEventListener("click", updateGrid); // Klick auf „Aktualisieren“ führt die Funktion aus
-    updateGrid(); // Führt die Funktion direkt beim Laden aus
+    // HTML-Code in die Textarea schreiben
+    gridHtmlOutput.value = gridHtml;
   }
+
+  // Event-Listener für den Aktualisieren-Button
+  updateGridBtn.addEventListener("click", updateGrid);
+
+  // Initiales Grid generieren
+  updateGrid();
 });
-  
