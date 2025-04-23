@@ -81,4 +81,45 @@ document.addEventListener("DOMContentLoaded", () => {
       updateAlert(); // Führt die Funktion direkt beim Laden aus
     }
   });
+
+  // =====================
+// Beispiel 3: Grid-System Vorschau
+// =====================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const gridPreview = document.getElementById("preview-grid"); // Vorschau-Bereich für das Grid
+  const gridColumnsInput = document.getElementById("grid-columns"); // Eingabefeld für die Anzahl der Spalten
+  const gridWidthInput = document.getElementById("grid-width"); // Eingabefeld für die Breite der Spalten
+  const updateGridBtn = document.getElementById("update-grid-btn"); // Button zum Aktualisieren des Grids
+  const gridHtmlOutput = document.getElementById("grid-html-output"); // Textarea zur Anzeige des generierten HTML-Codes
+
+  // Nur ausführen, wenn alle benötigten Elemente vorhanden sind
+  if (gridPreview && gridColumnsInput && gridWidthInput && updateGridBtn && gridHtmlOutput) {
+    // Diese Funktion aktualisiert das Grid und zeigt den HTML-Code dazu an
+    function updateGrid() {
+      const columns = parseInt(gridColumnsInput.value) || 1; // Anzahl der Spalten (Standard: 1)
+      const width = parseInt(gridWidthInput.value) || 12; // Breite der Spalten (Standard: 12)
+
+      // Begrenzung der Werte auf gültige Bootstrap-Werte
+      const validColumns = Math.min(Math.max(columns, 1), 12);
+      const validWidth = Math.min(Math.max(width, 1), 12);
+
+      // Grid-Inhalt generieren
+      gridPreview.innerHTML = ""; // Vorschau-Bereich leeren
+      let gridHtml = `<div class="row">\n`; // Start des HTML-Codes
+
+      for (let i = 1; i <= validColumns; i++) {
+        const colHtml = `<div class="col-${validWidth} bg-primary text-white text-center p-2">Spalte ${i}</div>`;
+        gridPreview.innerHTML += colHtml; // Spalte zur Vorschau hinzufügen
+        gridHtml += `  ${colHtml}\n`; // Spalte zum HTML-Code hinzufügen
+      }
+
+      gridHtml += `</div>`; // Ende des HTML-Codes
+      gridHtmlOutput.value = gridHtml; // HTML-Code in die Textarea schreiben
+    }
+
+    updateGridBtn.addEventListener("click", updateGrid); // Klick auf „Aktualisieren“ führt die Funktion aus
+    updateGrid(); // Führt die Funktion direkt beim Laden aus
+  }
+});
   

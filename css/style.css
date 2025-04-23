@@ -1,7 +1,5 @@
 
-/* Links und Icons von
-was-ist-bootstrap.html und
-quellen.html*/
+/* ==== Links und Icons von was-ist-bootstrap.html und quellen.html ==== */
 .subtle-link {
     color: inherit; 
     text-decoration: none; 
@@ -22,8 +20,7 @@ quellen.html*/
   .bi-bootstrap {
     color: #563d7c; 
   }
-/* Karte von
-ohne-bootstrap.html*/
+/* ==== Karte von ohne-bootstrap.html ==== */
   .custom-card {
     width: 18rem;
     border: 1px solid #ddd;
@@ -58,8 +55,7 @@ ohne-bootstrap.html*/
   .custom-card-btn:hover {
     background-color: #0056b3;
   }
-  /* Kontaktformular von
-  ohne-bootstrap.html */
+  /* ==== Kontaktformular von ohne-bootstrap.html ==== */
   .custom-form-container {
     max-width: 600px; 
     margin: 0; 
